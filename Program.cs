@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace napoleon
 {
@@ -35,41 +35,34 @@ namespace napoleon
 						NeChet[NeChet.Length-1] = arr[i];
 					}
 				}
-			Chet = BubbleSort(Chet);
-				NeChet = BubbleSortU(NeChet);
+			Chet = BubbleSort(Chet, true);
+				NeChet = BubbleSort(NeChet, false);
 			for (int i = 0; i < Chet.Length; i++) arr[i] = Chet[i];
 				for (int i = 0; i < NeChet.Length; i++) arr[Chet.Length + i] = NeChet[i];
 				foreach (int i in arr) Console.WriteLine(i);
 			
 		}
 
-		static int[] BubbleSort(int[] values)
+		static int[] BubbleSort(int[] values, bool f)
 		{
 			for (int i = 0; i < values.Length; i++)
 			{
 				for (int j = 0; j < values.Length - 1; j++)
 				{
-					if (values[j + 1] < values[j])
+					if (f)
 					{
-						Swap(ref values[j], ref values[j + 1]);
-					}
-				}
-			}
-			return values;
-		}
-		static int[] BubbleSortU(int[] values)
-		{
-			int temp;
-			for (int i = 0; i < values.Length - 1; i++)
-			{
-				for (int j = 0; j < values.Length - 1; j++)
-				{
-						if (values[j] < values[j+1])
+						if (values[j + 1] < values[j])
 						{
-						Swap(ref values[j], ref values[j + 1]);
-
+							Swap(ref values[j], ref values[j + 1]);
+						}
 					}
-
+					else
+					{
+						if (values[j + 1] > values[j])
+						{
+							Swap(ref values[j], ref values[j + 1]);
+						}
+					}
 				}
 			}
 			return values;
